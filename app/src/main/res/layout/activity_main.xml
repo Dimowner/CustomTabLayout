@@ -11,10 +11,14 @@
 	<com.xybean.customtablayout.tablayout.CustomTabLayout
 			android:id="@+id/tab_layout"
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:background="@color/colorPrimary"
+			android:layout_height="56dp"
+			android:background="@color/md_blue_700"
 			android:textSize="30sp"
-			app:tabIndicatorWidth="40dp"
+			android:elevation="2dp"
+			app:tabIndicatorWidth="48dp"
+			app:tabIndicatorHeight="4dp"
+			app:tabPaddingBottom="16dp"
+			app:tabIndicatorPaddingBottom="10dp"
 			app:tabSelectedTextColor="@color/white"
 			app:tabTextColor="@color/white"/>
 

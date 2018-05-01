@@ -174,6 +174,7 @@ public class CustomTabLayout extends HorizontalScrollView {
     int mTabPaddingTop;
     int mTabPaddingEnd;
     int mTabPaddingBottom;
+    int mTabIndicatorPaddingBottom;
 
     int mTabTextAppearance;
     ColorStateList mTabTextColors;
@@ -226,15 +227,8 @@ public class CustomTabLayout extends HorizontalScrollView {
 
         // Add the TabStrip
         mTabStrip = new SlidingTabStrip(context);
-
-        int padd = (int) getResources().getDimension(R.dimen.normal_spacing);
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-              LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
-        lp.setMargins(padd, padd, padd, padd);
-
-
-        super.addView(mTabStrip, 0, lp);
-//        mTabStrip.setPadding(padd, padd, padd, padd);
+        super.addView(mTabStrip, 0, new LayoutParams(
+              LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CustomTabLayout,
                 defStyleAttr, R.style.Widget_Design_TabLayout);
@@ -256,6 +250,9 @@ public class CustomTabLayout extends HorizontalScrollView {
                 mTabPaddingEnd);
         mTabPaddingBottom = a.getDimensionPixelSize(R.styleable.CustomTabLayout_tabPaddingBottom,
                 mTabPaddingBottom);
+
+        mTabIndicatorPaddingBottom = a.getDimensionPixelSize(R.styleable.CustomTabLayout_tabIndicatorPaddingBottom,
+              mTabIndicatorPaddingBottom);
 
         mTabTextAppearance = a.getResourceId(R.styleable.CustomTabLayout_tabTextAppearance,
                 R.style.TextAppearance_Design_Tab);
@@ -1976,8 +1973,29 @@ public class CustomTabLayout extends HorizontalScrollView {
 
             // Thick colored underline below the current selection
             if (mIndicatorLeft >= 0 && mIndicatorRight > mIndicatorLeft) {
-                canvas.drawRect(mIndicatorLeft, getHeight() - mSelectedIndicatorHeight,
-                        mIndicatorRight, getHeight(), mSelectedIndicatorPaint);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    canvas.drawRoundRect(
+                          mIndicatorLeft,
+                          getHeight() - mSelectedIndicatorHeight - mTabIndicatorPaddingBottom,
+                          mIndicatorRight,
+                          getHeight() - mTabIndicatorPaddingBottom,
+                          mSelectedIndicatorHeight/2,
+                          mSelectedIndicatorHeight/2,
+                          mSelectedIndicatorPaint);
+                } else {
+                    canvas.drawRect(mIndicatorLeft, getHeight() - mSelectedIndicatorHeight - mTabIndicatorPaddingBottom,
+                          mIndicatorRight, getHeight() - mTabIndicatorPaddingBottom, mSelectedIndicatorPaint);
+                    canvas.drawCircle(
+                          mIndicatorLeft,
+                          getHeight() - mTabIndicatorPaddingBottom - mSelectedIndicatorHeight / 2,
+                          mSelectedIndicatorHeight / 2,
+                          mSelectedIndicatorPaint);
+                    canvas.drawCircle(
+                          mIndicatorRight,
+                          getHeight() - mTabIndicatorPaddingBottom - mSelectedIndicatorHeight / 2,
+                          mSelectedIndicatorHeight / 2,
+                          mSelectedIndicatorPaint);
+                }
             }
         }
     }

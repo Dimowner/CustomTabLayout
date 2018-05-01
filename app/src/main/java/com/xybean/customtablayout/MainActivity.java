@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
         add(MyFragment.newInstance(R.color.md_blue_500, "Blue"));
         add(MyFragment.newInstance(R.color.md_red_700, "Red"));
         add(MyFragment.newInstance(R.color.md_pink_500, "Pink"));
+        add(MyFragment.newInstance(R.color.md_deep_purple_500, "Purple"));
     }};
 
     @Override
