@@ -1,20 +1,20 @@
 package com.xybean.customtablayout;
 
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
 import java.util.ArrayList;
 
 /**
  * Author @xybean on 2017/11/7.
  */
+public class MyAdapter extends FragmentStatePagerAdapter {
 
-public class MyAdapter extends FragmentPagerAdapter {
+    private ArrayList<MyFragment> fragmentList;
 
-    private ArrayList<Fragment> fragmentList;
-
-    public MyAdapter(FragmentManager fm, ArrayList<Fragment> fragmentList) {
+    public MyAdapter(FragmentManager fm, ArrayList<MyFragment> fragmentList) {
         super(fm);
         this.fragmentList = fragmentList;
     }
@@ -29,5 +29,10 @@ public class MyAdapter extends FragmentPagerAdapter {
         return fragmentList.size();
     }
 
+    @Nullable
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return fragmentList.get(position).getTitle();
+    }
 }
 

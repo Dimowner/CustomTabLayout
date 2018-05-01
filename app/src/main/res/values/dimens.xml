@@ -1,0 +1,7 @@
+<resources>
+
+    <dimen name="text_largest">48sp</dimen>
+    <dimen name="tab_indicator_height">4dp</dimen>
+    <dimen name="normal_spacing">8dp</dimen>
+
+</resources>

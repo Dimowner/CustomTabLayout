@@ -226,8 +226,15 @@ public class CustomTabLayout extends HorizontalScrollView {
 
         // Add the TabStrip
         mTabStrip = new SlidingTabStrip(context);
-        super.addView(mTabStrip, 0, new LayoutParams(
-                LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT));
+
+        int padd = (int) getResources().getDimension(R.dimen.normal_spacing);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+              LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
+        lp.setMargins(padd, padd, padd, padd);
+
+
+        super.addView(mTabStrip, 0, lp);
+//        mTabStrip.setPadding(padd, padd, padd, padd);
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CustomTabLayout,
                 defStyleAttr, R.style.Widget_Design_TabLayout);

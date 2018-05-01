@@ -3,4 +3,19 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <!--reds-->
+    <color name="md_red_500">#e51c23</color>
+    <color name="md_red_700">#d01716</color>
+    <!-- pinks -->
+    <color name="md_pink_500">#e91e63</color>
+    <color name="md_pink_800">#ad1457</color>
+    <!-- deep purples -->
+    <color name="md_deep_purple_500">#673ab7</color>
+    <color name="md_deep_purple_700">#512da8</color>
+    <!--blue-->
+    <color name="md_blue_500">#5677fc</color>
+    <color name="md_blue_700">#455ede</color>
+
+    <color name="white">#ffffff</color>
 </resources>
